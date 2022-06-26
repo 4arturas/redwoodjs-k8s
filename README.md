@@ -83,3 +83,40 @@ watch kubectl get certificate
 ```terminal
 kubectl describe certificate echo-tls
 ```
+
+## Argo CD
+```terminal
+kubectl create namespace argocd
+```
+```terminal
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+```terminal
+wget https://github.com/argoproj/argo-cd/releases/download/v2.4.2/argocd-linux-amd64
+```
+```terminal
+mv argocd-linux-amd64 argocd
+```
+```terminal
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+```terminal
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+```
+```terminal
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+
+### Login with username *admin*
+https://localhost:8080
+
+
+## Docker
+### Generate token https://github.com/settings/tokens
+```terminal
+docker build -f DockerfileAPI -t api .
+docker tag api ghcr.io/4arturas/api
+export CR_PAT=token...WqZpbOVMFWQXaJxUQ...token
+echo $CR_PAT | docker login ghcr.io -u 4arturas --password-stdin
+docker push ghcr.io/4arturas/api
+```
