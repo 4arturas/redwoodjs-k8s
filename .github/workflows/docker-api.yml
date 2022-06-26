@@ -1,4 +1,4 @@
-name: ci
+name: api
 
 on:
   push:
