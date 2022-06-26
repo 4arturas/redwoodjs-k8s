@@ -86,3 +86,31 @@ spec:
   type: NodePort
 
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redk8s
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: redk8s.sys
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  name: web
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api
+                port:
+                  name: api
+
+
