@@ -1,0 +1,29 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: redwoodjs-k-s
+build:
+  artifacts:
+  - image: api
+    docker:
+      dockerfile: DockerfileAPI
+  - image: web
+    context: api
+    buildpacks:
+      builder: gcr.io/buildpacks/builder:v1
+deploy:
+  kubectl:
+    manifests:
+    - devops/k8s-api-skaffold.yaml
+
+profiles:
+  - name: web
+    build:
+      artifacts:
+        - image: web
+          docker:
+            dockerfile: DockerfileWEB
+    deploy:
+      kubectl:
+        manifests:
+          - devops/k8s-web-skaffold.yaml

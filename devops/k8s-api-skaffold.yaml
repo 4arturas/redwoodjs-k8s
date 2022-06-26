@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      platform: api
+  template:
+    metadata:
+      labels:
+        platform: api
+    spec:
+      containers:
+        - env:
+            - name: NODE_ENV
+              value: development
+            - name: RUNTIME_ENV
+              value: dev
+            - name: DATABASE_URL
+              value: postgres://postgres:password@dbserver:5432/postgres
+          image: api
+          name: api
+          ports:
+            - containerPort: 8911
+      imagePullSecrets:
+        - name: my-container-registry-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    platform: api
+  name: api
+spec:
+  ports:
+    - port: 8911
+      name: api
+  selector:
+    platform: api
+  type: NodePort
+
