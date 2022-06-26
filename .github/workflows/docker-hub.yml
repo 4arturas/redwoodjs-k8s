@@ -3,16 +3,16 @@ name: ci
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
 
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       -
-        name: Checkout 
+        name: Checkout
         uses: actions/checkout@v2
       -
         name: Login to Docker Hub
