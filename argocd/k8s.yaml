@@ -20,8 +20,9 @@ spec:
               value: dev
             - name: DATABASE_URL
               value: postgres://postgres:password@dbserver:5432/postgres
-          image: arturix/api
+          image: arturix/api:latest
           name: api
+          imagePullPolicy: Always
           ports:
             - containerPort: 8911
       imagePullSecrets:
@@ -64,8 +65,9 @@ spec:
               value: production
             - name: RUNTIME_ENV
               value: production
-          image: arturix/web
+          image: arturix/web:latest
           name: web
+          imagePullPolicy: Always
           ports:
             - containerPort: 8910
       imagePullSecrets:
