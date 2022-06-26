@@ -120,3 +120,4 @@ export CR_PAT=token...WqZpbOVMFWQXaJxUQ...token
 echo $CR_PAT | docker login ghcr.io -u 4arturas --password-stdin
 docker push ghcr.io/4arturas/api
 ```
+
