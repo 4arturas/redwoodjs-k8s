@@ -70,7 +70,7 @@ curl -s https://pagekite.net/pk/ |sudo bash
 ```
 
 ```terminal
-python3 /usr/local/bin/pagekite.py http://192.168.49.2 4arturas.pagekite.me
+python3 /usr/local/bin/pagekite.py --logfile=/home/arturas/Downloads/log.txt http://192.168.49.2 4arturas.pagekite.me
 ```
 
 https://4arturas.pagekite.me/
