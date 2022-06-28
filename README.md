@@ -127,3 +127,26 @@ echo $CR_PAT | docker login ghcr.io -u 4arturas --password-stdin
 docker push ghcr.io/4arturas/api
 ```
 
+# k3s
+```terminal
+curl -sfL https://get.k3s.io | sh -
+```
+```terminal
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+```
+```terminal
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+```
+## k3s traefik dashboard
+```terminal
+kubectl apply -f devops/k3s-traefik-dashboard.yaml
+```
+http://traefik.localhost/
+
+
+
+
+```terminal
+alias kubectl="sudo k3s kubectl"
+```
+
