@@ -84,7 +84,7 @@ watch kubectl get certificate
 kubectl describe certificate echo-tls
 ```
 
-## Argo CD
+## Argo CD MINIKUBE
 ```terminal
 kubectl create namespace argocd
 ```
@@ -142,6 +142,28 @@ export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 kubectl apply -f devops/k3s-traefik-dashboard.yaml
 ```
 http://traefik.localhost/
+
+### Login with username *admin*
+https://localhost:8080
+
+## ArgoCD k3s
+```terminal
+kubectl create namespace argocd
+```
+```terminal
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+```terminal
+kubectl get all -n argocd
+```
+```terminal
+kubectl apply -f devops/argocd-nodeport.yaml
+```
+### Login with username *admin*
+http://localhost:30007
+```terminal
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
 
 
 
