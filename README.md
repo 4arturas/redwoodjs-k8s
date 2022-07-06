@@ -107,7 +107,7 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 ```terminal
-sudo bash -c 'echo -n “192.168.49.2    argocd.sys” > /etc/hosts'
+sudo bash -c 'echo -n ''192.168.49.2    argocd.sys'' >> /etc/hosts'
 ```
 ```terminal
 kubectl apply -f devops/ingress-argocd.yaml -n argocd
